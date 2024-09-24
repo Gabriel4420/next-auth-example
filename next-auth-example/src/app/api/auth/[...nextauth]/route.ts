@@ -2,7 +2,7 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { NextAuthOptions } from 'next-auth';
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -12,7 +12,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         // Lógica para verificar credenciais
-        if (credentials?.email === 'admin@example.com' && credentials.password === 'admin') {
+        if (credentials?.email === 'admin@example.com' && credentials.password === '123456') {
           // Retorne o objeto user com o campo 'id'
           return { id: '1', name: 'Admin', email: 'admin@example.com' };
         }
@@ -50,4 +50,7 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-export default NextAuth(authOptions);
+
+const handler = NextAuth(authOptions)
+
+export {handler as GET, handler as POST} ;
